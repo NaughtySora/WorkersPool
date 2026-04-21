@@ -1,7 +1,5 @@
 "use strict";
 
-const noroutine = require("./noroutine.js");
-const pool = require("./pool.js");
+const tests = ["pool", "noroutine"];
 
-// pool();
-// noroutine();
+for (const test of tests) require(`./${test}.js`);

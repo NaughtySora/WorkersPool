@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "author": "NaughtySora <naughtysora@proton.me>",
   "license": "MIT",
-  "main": "main.js",
+  "exports": "./main.js",
   "types": "main.d.ts",
   "description": "Nodejs workers pool",
   "keywords": [
@@ -22,12 +22,16 @@
     "types": "tsc -p ./tsconfig.json",
     "test": "node ./test/index.js"
   },
-  "homepage": "https://github.com/NaughtySora/naughty-workers#readme",
+  "homepage": "https://github.com/NaughtySora/WorkersPool#readme",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/NaughtySora/naughty-workers.git"
+    "url": "git+https://github.com/NaughtySora/WorkersPool.git"
   },
   "bugs": {
-    "url": "https://github.com/NaughtySora/naughty-workers/issues"
+    "url": "https://github.com/NaughtySora/WorkersPool/issues"
+  },
+  "dependencies": {
+    "c8": "^11.0.0",
+    "naughty-util": "^0.6.3"
   }
 }
