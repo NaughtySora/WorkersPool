@@ -5,13 +5,18 @@ const api = require("./mock/api.js");
 const crypto = require("./mock/crypto.js");
 const { describe, it } = require("node:test");
 const assert = require("node:assert/strict");
+const { async } = require("naughty-util");
 
-describe("WorkersPool", () => {
-  it("", () => {
-    const modules = { api, crypto };
-    const CONCURRENCY = 5;
-    const pool = new WorkersPool({ modules, concurrency: CONCURRENCY });
-
+describe("WorkersPool", async () => {
+  await it("", async () => {
+    try {
+      const modules = { api, crypto };
+      const CONCURRENCY = 5;
+      const pool = await new WorkersPool({ modules, concurrency: CONCURRENCY });
+      console.log(await pool.stats());
+    } catch (e) {
+      console.error(e);
+    }
     // setTimeout(() => void pool.close(), 1000);
     // pool.execute("crypto", "getUUID").then(
     //   console.log,
