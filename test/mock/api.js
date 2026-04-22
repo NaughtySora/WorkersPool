@@ -11,7 +11,7 @@ module.exports = {
     const { resolve, promise } = Promise.withResolvers();
     setTimeout(() => {
       resolve(args);
-    }, 2500);
+    }, 500);
     return promise;
   },
   async fail(args) {
