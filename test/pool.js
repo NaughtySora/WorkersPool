@@ -6,18 +6,28 @@ const crypto = require("./mock/crypto.js");
 const { describe, it } = require("node:test");
 const assert = require("node:assert/strict");
 const { async } = require("naughty-util");
+const { once } = require("node:events");
 
-(async () => {
-  const modules = { api, crypto };
-  const CONCURRENCY = 3;
-  const pool = await new WorkersPool({ modules, concurrency: CONCURRENCY });
-  let i = 0;
-  while (i++ !== 20) {
-    pool.execute("api", "some", { some: "value1" })
-      .then(console.log);
-  }
-  process.on("SIGINT", async () => {
+describe('WorkersPool', async () => {
+  await it('simple', async () => {
+    const modules = { api, crypto };
+    const CONCURRENCY = 2;
+    const pool = await new WorkersPool({
+      modules,
+      concurrency: CONCURRENCY,
+    });
+    const result = [];
+    let i = 0;
+    const COUNT = 10;
+    while (i++ !== COUNT) {
+      pool.execute("api", "some", { some: "value" })
+        .then(data => void result.push(data));
+    }
+    await once(pool, 'drain');
     await pool.close();
-    process.exit(0);
+    assert.deepEqual(result, Array.from(
+      { length: COUNT },
+      () => ({ some: 'value' })
+    ));
   });
-})();
+});

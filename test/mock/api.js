@@ -10,7 +10,7 @@ module.exports = {
   some(...args) {
     const { resolve, promise } = Promise.withResolvers();
     setTimeout(() => {
-      resolve(args);
+      resolve(args[0]);
     }, 500);
     return promise;
   },
