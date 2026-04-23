@@ -15,6 +15,6 @@ module.exports = {
     return promise;
   },
   async fail(args) {
-    throw new Error("error");
+    throw new Error("Api fail");
   },
 };

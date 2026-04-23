@@ -20,7 +20,7 @@
   ],
   "scripts": {
     "types": "tsc -p ./tsconfig.json",
-    "test": "node ./test/index.js"
+    "test": "c8 node ./test/index.js"
   },
   "homepage": "https://github.com/NaughtySora/WorkersPool#readme",
   "repository": {

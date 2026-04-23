@@ -3,28 +3,22 @@
 const api = require("./mock/api.js");
 const crypto = require("./mock/crypto.js");
 const { finalize, register } = require("../lib/noroutine.js");
+const { describe, it } = require("node:test");
+const assert = require("node:assert/strict");
+const { async } = require("naughty-util");
+const { once } = require("node:events");
 
-module.exports = () => {
-  const modules = { api, crypto };
-  const test = register({ modules, concurrency: 10 });
-  test.api.some("test", 42, { a: 1 }).then(console.log);
-  test.api.fail("test", 42, { a: 1 }).then(console.log, console.error);
-  for (let i = 0; i < 10; i++) {
-    test.api.getFloat().then(
-      console.log.bind(null, "Float " + `${i}: `),
-      console.error
-    );
-  }
-
-  const data = { test: 42, };
-  test.crypto.encrypt(data)
-    .then((hex) => {
-      test.crypto.check(data, hex)
-        .then(
-          console.log.bind(null, `${JSON.stringify(data)} ${hex} isEqual: `),
-          console.error,
-        );
-    }, console.error);
-
-  setTimeout(finalize, 2000, test);
-};
+describe('noroutine', async () => {
+  it('simple', async () => {
+    const modules = { api, crypto };
+    const noroutine = await register({ modules, concurrency: 3 });
+    const float = await noroutine.api.getFloat();
+    assert.ok(typeof float === "number");
+    try {
+      await noroutine.api.fail();
+    } catch (e) {
+      assert.match(e.message, /Api fail/);
+    }
+    await finalize(noroutine);
+  });
+});

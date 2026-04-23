@@ -1,6 +1,10 @@
 "use strict";
 
-// const tests = ["pool", "noroutine"];
-const tests = ["pool"];
+/**
+ * @todo
+ * more tests
+ */
+
+const tests = ["pool", "noroutine"];
 
 for (const test of tests) require(`./${test}.js`);
