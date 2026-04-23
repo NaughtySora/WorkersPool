@@ -9,3 +9,15 @@
 
 - pool unstable implementation
 - tests
+
+## [0.2.0] - 2026-04-23
+
+- refactor pool, noroutine
+- List instead of array for pool queue
+- better close method
+- add restart method
+- handling worker error
+- add events to pool
+- better tests, coverage
+- types
+- update readme
