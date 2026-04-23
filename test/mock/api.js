@@ -10,11 +10,11 @@ module.exports = {
   some(...args) {
     const { resolve, promise } = Promise.withResolvers();
     setTimeout(() => {
-      resolve(args);
-    }, 2500);
+      resolve(args[0]);
+    }, 500);
     return promise;
   },
   async fail(args) {
-    throw new Error("error");
+    throw new Error("Api fail");
   },
 };
