@@ -43,6 +43,7 @@ export class WorkersPool<M extends Modules> extends EventEmitter {
   status: 'init' | 'running' | 'stopping' | 'stopped';
   free: number;
   inQueue: number;
+  isRunning: number;
 }
 
 interface Noroutine {
