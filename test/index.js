@@ -2,7 +2,8 @@
 
 /**
  * @todo
- * more tests
+ * - add max retries logic
+ * - more tests
  */
 
 const tests = ["pool", "noroutine"];
