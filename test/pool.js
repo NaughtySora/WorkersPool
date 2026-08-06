@@ -8,8 +8,8 @@ const assert = require("node:assert/strict");
 const { async } = require("naughty-util");
 const { once } = require("node:events");
 
-describe('WorkersPool', async () => {
-  await it('simple', async () => {
+describe("WorkersPool", async () => {
+  await it("simple", async () => {
     const modules = { api, crypto };
     const CONCURRENCY = 2;
     const pool = await new WorkersPool({
@@ -23,7 +23,7 @@ describe('WorkersPool', async () => {
       pool.execute("api", "some", { some: "value" })
         .then(data => void result.push(data));
     }
-    await once(pool, 'idle');
+    await once(pool, "idle");
     await pool.close();
     assert.equal(result.length, COUNT);
   });

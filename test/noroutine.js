@@ -8,8 +8,8 @@ const assert = require("node:assert/strict");
 const { async } = require("naughty-util");
 const { once } = require("node:events");
 
-describe('noroutine', async () => {
-  it('simple', async () => {
+describe("noroutine", async () => {
+  it("simple", async () => {
     const modules = { api, crypto };
     const noroutine = await register({ modules, concurrency: 3 });
     const float = await noroutine.api.getFloat();
